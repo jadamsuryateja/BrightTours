@@ -130,10 +130,22 @@
 
   html {
     scroll-behavior: smooth;
+    overflow-x: hidden;
+    width: 100%;
   }
 
   body {
     @apply bg-background text-foreground font-body antialiased;
+    position: relative;
+    min-height: 100vh;
+    overflow-x: hidden;
+    width: 100%;
+    max-width: 100vw;
+  }
+
+  /* Ensure header stays at top */
+  header {
+    will-change: transform;
   }
 
   h1,

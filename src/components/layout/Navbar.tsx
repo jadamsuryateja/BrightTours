@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Phone } from "lucide-react";
 
 const navLinks = [
@@ -89,11 +88,19 @@ const Navbar = () => {
 
   return (
     <>
-      <motion.header
-        initial={{ y: -100 }}
-        animate={{ y: 0 }}
-        transition={{ duration: 0.6, ease: "easeOut" }}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${isScrolled
+      <header
+        style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          right: 0,
+          zIndex: 50,
+          transform: 'translateZ(0)',
+          WebkitTransform: 'translateZ(0)',
+          backfaceVisibility: 'hidden',
+          WebkitBackfaceVisibility: 'hidden'
+        }}
+        className={`w-full transition-all duration-500 ${isScrolled
           ? "glass-nav py-3 shadow-soft"
           : "bg-transparent py-5"
           }`}
@@ -133,10 +140,8 @@ const Navbar = () => {
               >
                 {link.name}
                 {isActiveLink(link.name) && (
-                  <motion.div
-                    layoutId="navbar-indicator"
+                  <div
                     className="absolute -bottom-1 left-0 right-0 h-0.5 bg-secondary rounded-full"
-                    transition={{ type: "spring", stiffness: 380, damping: 30 }}
                   />
                 )}
               </Link>
@@ -174,92 +179,74 @@ const Navbar = () => {
         </div>
 
 
-      </motion.header >
+      </header>
 
       {/* Mobile Menu Overlay */}
-      <AnimatePresence>
-        {
-          isOpen && (
-            <motion.div
-              initial={{ opacity: 0, x: "100%" }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: "100%" }}
-              transition={{ duration: 0.3, ease: "easeInOut" }}
-              className="fixed inset-0 z-[60] bg-background md:hidden flex flex-col"
+      {isOpen && (
+        <div
+          className="fixed inset-0 z-[60] bg-background md:hidden flex flex-col transition-all duration-300"
+        >
+          {/* Mobile Menu Header */}
+          <div className="flex items-center justify-between p-5 border-b border-border/50">
+            <Link to="/" onClick={() => setIsOpen(false)} className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center overflow-hidden">
+                <img src="/logo.png" alt="Bright Tours Logo" className="w-full h-full object-cover" />
+              </div>
+              <div className="flex flex-col">
+                <span className="font-heading font-semibold text-lg leading-tight text-primary">
+                  Bright Tours
+                </span>
+                <span className="text-xs tracking-widest uppercase text-muted-foreground">
+                  & Travels
+                </span>
+              </div>
+            </Link>
+            <button
+              onClick={() => setIsOpen(false)}
+              className="p-2 text-foreground hover:text-destructive transition-colors"
+              aria-label="Close Menu"
             >
-              {/* Mobile Menu Header */}
-              <div className="flex items-center justify-between p-5 border-b border-border/50">
-                <Link to="/" onClick={() => setIsOpen(false)} className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center overflow-hidden">
-                    <img src="/logo.png" alt="Bright Tours Logo" className="w-full h-full object-cover" />
-                  </div>
-                  <div className="flex flex-col">
-                    <span className="font-heading font-semibold text-lg leading-tight text-primary">
-                      Bright Tours
-                    </span>
-                    <span className="text-xs tracking-widest uppercase text-muted-foreground">
-                      & Travels
-                    </span>
-                  </div>
-                </Link>
-                <button
+              <X className="w-6 h-6" />
+            </button>
+          </div>
+
+          {/* Mobile Menu Links */}
+          <div className="flex-1 flex flex-col justify-center items-center gap-8 p-8">
+            {navLinks.map((link) => (
+              <div key={link.path}>
+                <Link
+                  to={link.path}
                   onClick={() => setIsOpen(false)}
-                  className="p-2 text-foreground hover:text-destructive transition-colors"
-                  aria-label="Close Menu"
+                  className={`text-2xl font-heading font-medium tracking-wide transition-colors ${isActiveLink(link.name)
+                    ? "text-secondary"
+                    : "text-foreground hover:text-secondary"
+                    }`}
                 >
-                  <X className="w-6 h-6" />
-                </button>
+                  {link.name}
+                </Link>
               </div>
+            ))}
 
-              {/* Mobile Menu Links */}
-              <div className="flex-1 flex flex-col justify-center items-center gap-8 p-8">
-                {navLinks.map((link, index) => (
-                  <motion.div
-                    key={link.path}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.1 + index * 0.1 }}
-                  >
-                    <Link
-                      to={link.path}
-                      onClick={() => setIsOpen(false)}
-                      className={`text-2xl font-heading font-medium tracking-wide transition-colors ${isActiveLink(link.name)
-                        ? "text-secondary"
-                        : "text-foreground hover:text-secondary"
-                        }`}
-                    >
-                      {link.name}
-                    </Link>
-                  </motion.div>
-                ))}
+            <div className="flex flex-col items-center gap-6 mt-8 w-full">
+              <Link
+                to="/contact"
+                onClick={() => setIsOpen(false)}
+                className="btn-primary w-full max-w-xs justify-center"
+              >
+                Get Quote
+              </Link>
 
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.5 }}
-                  className="flex flex-col items-center gap-6 mt-8 w-full"
-                >
-                  <Link
-                    to="/contact"
-                    onClick={() => setIsOpen(false)}
-                    className="btn-primary w-full max-w-xs justify-center"
-                  >
-                    Get Quote
-                  </Link>
-
-                  <a
-                    href="tel:+919035119555"
-                    className="flex items-center gap-2 text-lg font-medium text-muted-foreground hover:text-secondary transition-colors"
-                  >
-                    <Phone className="w-5 h-5" />
-                    +91 90351 19555
-                  </a>
-                </motion.div>
-              </div>
-            </motion.div>
-          )
-        }
-      </AnimatePresence >
+              <a
+                href="tel:+919035119555"
+                className="flex items-center gap-2 text-lg font-medium text-muted-foreground hover:text-secondary transition-colors"
+              >
+                <Phone className="w-5 h-5" />
+                +91 90351 19555
+              </a>
+            </div>
+          </div>
+        </div>
+      )}
     </>
   );
 };

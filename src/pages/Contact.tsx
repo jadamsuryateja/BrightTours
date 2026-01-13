@@ -95,7 +95,7 @@ Please provide a quote.`;
   };
 
   return (
-    <main>
+    <main className="overflow-x-hidden w-full max-w-[100vw]">
       <Helmet>
         <title>Contact Us | Bright Tours & Travels Bidar</title>
         <meta

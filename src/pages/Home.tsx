@@ -6,7 +6,7 @@ import LocationSection from "@/components/home/LocationSection";
 
 const Home = () => {
   return (
-    <main>
+    <main className="overflow-x-hidden w-full max-w-[100vw]">
       <Helmet>
         <title>Bright Tours & Travels | Luxury Car & Bus Rental Bidar</title>
         <meta
