@@ -76,9 +76,9 @@ const Hero = () => {
             transition={{ duration: 0.6, delay: 0.7 }}
             className="flex flex-row items-center justify-center gap-2 sm:gap-4 max-w-md mx-auto px-2"
           >
-            <Link to="/services" className="btn-hero group flex-1 sm:flex-initial text-sm sm:text-base">
-              <span className="hidden xs:inline">View Our Fleet</span>
-              <span className="xs:hidden">Our Fleet</span>
+            <Link to="/#services" className="btn-hero group flex-1 sm:flex-initial text-sm sm:text-base">
+              <span className="hidden xs:inline">Our Services</span>
+              <span className="xs:hidden">Services</span>
               <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
             </Link>
             <Link to="/contact" className="btn-hero-outline flex-1 sm:flex-initial text-sm sm:text-base">
