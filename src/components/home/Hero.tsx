@@ -74,13 +74,14 @@ const Hero = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.7 }}
-            className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 sm:gap-4 max-w-md sm:max-w-none mx-auto px-2 sm:px-0"
+            className="flex flex-row items-center justify-center gap-2 sm:gap-4 max-w-md mx-auto px-2"
           >
-            <Link to="/services" className="btn-hero group w-full sm:w-auto">
-              View Our Fleet
+            <Link to="/services" className="btn-hero group flex-1 sm:flex-initial text-sm sm:text-base">
+              <span className="hidden xs:inline">View Our Fleet</span>
+              <span className="xs:hidden">Our Fleet</span>
               <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
             </Link>
-            <Link to="/contact" className="btn-hero-outline w-full sm:w-auto">
+            <Link to="/contact" className="btn-hero-outline flex-1 sm:flex-initial text-sm sm:text-base">
               Get a Quote
             </Link>
           </motion.div>
@@ -91,25 +92,18 @@ const Hero = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.9 }}
-          className="mt-10 sm:mt-12 md:mt-16 lg:mt-20 grid grid-cols-2 md:grid-cols-4 gap-2 sm:gap-3 md:gap-4 lg:gap-6 max-w-3xl mx-auto px-2 sm:px-0"
+          className="mt-8 sm:mt-10 md:mt-12 space-y-3 sm:space-y-4 max-w-md mx-auto px-4"
         >
-          {[
-            { icon: Shield, label: "Verified Business" },
-            { icon: Clock, label: "On Time, Every Time" },
-            { icon: Star, label: "50+ Happy Weddings" },
-            { icon: Shield, label: "All India Permit" },
-          ].map((item, index) => (
-            <motion.div
-              key={item.label}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 1 + index * 0.1 }}
-              className="flex flex-col items-center gap-1.5 sm:gap-2 p-2.5 sm:p-3 md:p-4 rounded-lg sm:rounded-xl bg-white/5 backdrop-blur-sm border border-white/10"
-            >
-              <item.icon className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 text-secondary flex-shrink-0" />
-              <span className="text-white/80 text-[10px] sm:text-xs md:text-sm text-center leading-tight">{item.label}</span>
-            </motion.div>
-          ))}
+          <div className="grid items-center text-white/80 text-xs sm:text-sm gap-3" style={{ gridTemplateColumns: '1fr auto 1fr' }}>
+            <span className="text-right">Verified Business</span>
+            <span className="text-secondary px-2">|</span>
+            <span className="text-left">On Time, Every Time</span>
+          </div>
+          <div className="grid items-center text-white/80 text-xs sm:text-sm gap-3" style={{ gridTemplateColumns: '1fr auto 1fr' }}>
+            <span className="text-right">Happy Weddings</span>
+            <span className="text-secondary px-2">|</span>
+            <span className="text-left">All India Permit</span>
+          </div>
         </motion.div>
       </div>
 

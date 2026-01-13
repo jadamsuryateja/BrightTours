@@ -7,7 +7,7 @@ const AboutSection = () => {
     return (
         <section id="about" className="relative">
             {/* Story Section */}
-            <section className="relative min-h-[600px] flex items-center overflow-hidden">
+            <section className="relative min-h-[600px] md:min-h-[700px] flex items-center overflow-hidden">
                 {/* Background Image */}
                 <div className="absolute inset-0 z-0">
                     <img
@@ -15,28 +15,28 @@ const AboutSection = () => {
                         alt="Professional chauffeur service"
                         className="w-full h-full object-cover"
                     />
-                    {/* Strong gradient overlay on the right side only */}
-                    <div className="absolute inset-0 bg-gradient-to-l from-oxford-blue via-oxford-blue/90 to-transparent lg:via-50% lg:to-70%" />
+                    {/* Stronger gradient overlay on mobile for better text readability */}
+                    <div className="absolute inset-0 bg-gradient-to-b md:bg-gradient-to-l from-oxford-blue via-oxford-blue/95 to-oxford-blue/80 md:via-oxford-blue/90 md:to-transparent lg:via-50% lg:to-70%" />
                 </div>
 
-                <div className="container-custom relative z-10 flex justify-end py-20">
+                <div className="container-custom relative z-10 flex justify-end py-12 md:py-20">
                     {/* Content */}
                     <motion.div
                         initial={{ opacity: 0, x: 30 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.6 }}
-                        className="w-full lg:w-1/2 px-6 lg:px-12"
+                        className="w-full lg:w-1/2 px-4 sm:px-6 lg:px-12"
                     >
-                        <span className="text-secondary text-sm uppercase tracking-widest font-medium">
+                        <span className="text-secondary text-xs sm:text-sm uppercase tracking-widest font-medium">
                             Est. in Bidar
                         </span>
-                        <h2 className="heading-lg text-white mt-3 mb-6">
+                        <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-heading font-bold text-white mt-3 mb-6">
                             Travel Made Easy
                         </h2>
-                        <div className="accent-line mb-8" />
+                        <div className="accent-line mb-6 md:mb-8" />
 
-                        <div className="space-y-6 text-white/80 leading-relaxed font-medium">
+                        <div className="space-y-4 md:space-y-6 text-white/90 leading-relaxed text-sm sm:text-base font-medium">
                             <p>
                                 At Bright Tours & Travels, we believe that the journey is just as important
                                 as the destination. Whether it's a weekend getaway, a family pilgrimage,
@@ -55,17 +55,17 @@ const AboutSection = () => {
                         </div>
 
                         {/* Stats */}
-                        <div className="grid grid-cols-3 gap-6 mt-10 border-t border-white/10 pt-8">
+                        <div className="grid grid-cols-3 gap-3 sm:gap-6 mt-8 md:mt-10 border-t border-white/10 pt-6 md:pt-8">
                             {[
                                 { number: "50+", label: "Happy Weddings" },
                                 { number: "10+", label: "Years Experience" },
                                 { number: "100%", label: "Satisfaction" },
                             ].map((stat) => (
                                 <div key={stat.label} className="text-center">
-                                    <div className="text-3xl font-heading font-bold text-secondary">
+                                    <div className="text-2xl sm:text-3xl font-heading font-bold text-secondary">
                                         {stat.number}
                                     </div>
-                                    <div className="text-sm text-white/60 mt-1">
+                                    <div className="text-xs sm:text-sm text-white/70 mt-1">
                                         {stat.label}
                                     </div>
                                 </div>
